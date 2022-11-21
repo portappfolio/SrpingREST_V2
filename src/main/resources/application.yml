@@ -1,0 +1,96 @@
+
+#General Configuration
+server:
+  port: 8080
+  error:
+    include-message: always
+    include-binding-errors: always
+
+#MySQL Conection
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1/test
+    username: root
+    password: admin123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    properties:
+      hibernate:
+        format_sql: true
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+
+  #Setear tama\u00f1o maximo de archivos para el tipo BLOB de Mysql
+  servlet:
+    multipart:
+      enabled: true
+      #file-size-threshold: 2KB
+      max-file-size: 5MB
+      max-request-size: 5MB
+
+
+  #logging.level.root=info
+  output:
+    ansi.enabled: always
+
+  main:
+    banner-mode: console
+
+logging:
+  pattern:
+    dateformat: hh:mm
+  level:
+    org:
+      hibernate:
+        SQL: debug
+        type:
+          descriptor:
+            sql:
+              BasicBinder: trace
+
+security:
+  jwt:
+    secret: SecureSecretKeyJWTPortappFolioImplementationR8[Bpm?J(H5SP2y
+    time:
+      login: 3600000
+      multilogin: 86400000
+    issuer: Web
+
+sengrid:
+  key: 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
+
+twilio:
+  sid: ACae7745df49ce5b84acacf57d4a94e638
+  token: fa246e50339a3086539d5e3ce5dcce15
+  sms: +18303964713
+  whatsapp: +14155238886
+  sandbox: +3106984048
+
+mercado-pago:
+  url-api: https://api.mercadopago.com
+  preference-config:
+    back-urls:
+      success: http://localhost:4200/dashboard/store/success
+      pending: http://localhost:4200/dashboard/store/pending
+      failure: http://localhost:4200/dashboard/store/failure
+    auto-return: all
+    expires: true
+    statement-descriptor: Portappfolio App Co.
+    binary-mode: false
+  paths:
+    get-payment-methods: /v1/payment_methods
+    get-identification-types: /v1/identification_types
+    post-create-customer: /v1/customers
+    get-client: /v1/customers/search
+    post-create-preference: /checkout/preferences
+
+  client-id: 2931607913148229
+  client-secret: ahpYfJXoBJfkDO2NfMuIJl483rPT2oI7
+  prod:
+    public-key: APP_USR-b9e520dc-262e-42c0-8372-e44117d7a5d7
+    access-token: APP_USR-2931607913148229-011402-98989a7f7ad793c236fcf444aac984c1-413869228
+  test:
+    public-key: TEST-d39f4d3d-0682-41ab-9e3d-2aed66abd26c
+    access-token: TEST-2931607913148229-011402-07cdc18c01d984ec720755ac9c0ba7ab-413869228
